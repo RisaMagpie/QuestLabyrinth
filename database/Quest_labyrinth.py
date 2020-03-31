@@ -1,8 +1,6 @@
 
 # coding: utf-8
 
-# In[32]:
-
 
 import psycopg2
 import sys
