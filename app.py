@@ -1,6 +1,7 @@
 from flask import Flask, request
 import telegram
 from telebot.credentials import bot_token, bot_user_name, URL
+import re
 
 global bot
 global TOKEN
@@ -30,11 +31,10 @@ def respond():
         """
         # send the welcoming message
         bot.sendMessage(chat_id=chat_id, text=bot_welcome, reply_to_message_id=msg_id)
-
-
     else:
         try:
             # clear the message we got from any non alphabets
+            bot.sendMessage(chat_id=chat_id, text="вы прислали сообщение", reply_to_message_id=msg_id)
             text = re.sub(r"\W", "_", text)          
             bot.sendMessage(chat_id=chat_id, text=text, reply_to_message_id=msg_id)
         except Exception:
