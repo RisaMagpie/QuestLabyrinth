@@ -35,10 +35,8 @@ def respond():
     else:
         try:
             # clear the message we got from any non alphabets
-            text = re.sub(r"\W", "_", text)
-            # create the api link for the avatar based on http://avatars.adorable.io/
-            answer = text           
-            bot.sendMessage(chat_id=chat_id, text=answer, reply_to_message_id=msg_id)
+            text = re.sub(r"\W", "_", text)          
+            bot.sendMessage(chat_id=chat_id, text=text, reply_to_message_id=msg_id)
         except Exception:
             # if things went wrong
             bot.sendMessage(chat_id=chat_id, text="Упс, что-то пошло не так. Попробуйте перезапустить бота.", reply_to_message_id=msg_id)
@@ -59,7 +57,7 @@ def set_webhook():
     
 @app.route('/')
 def index():
-    return '.'
+    return '  Hello! Bot is runnig now.'
 if __name__ == '__main__':
     # note the threaded arg which allow
     # your app to have more than one thread
