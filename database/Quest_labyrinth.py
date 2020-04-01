@@ -1,8 +1,6 @@
 
 # coding: utf-8
 
-# In[32]:
-
 
 import psycopg2
 import sys
@@ -16,8 +14,7 @@ try:
     conn.set_isolation_level(0)
     conn.autocommit = True 
 except:
-    print("Unable to connect to the database."
-)
+    print("Unable to connect to the database.")
 cur = conn.cursor()
 
 try:
@@ -30,9 +27,6 @@ try:
 #     conn.close()
 except:
     print ("Error: ", sys.exc_info()[1])
-
-
-# In[34]:
 
 
 #cur.execute('''CREATE DATABASE "quest_labyrinth2" WITH ENCODING = 'UTF8';''') 
