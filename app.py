@@ -1,4 +1,5 @@
 from flask import Flask, request
+import re
 import telegram
 from telebot.credentials import bot_token, bot_user_name, URL
 import re
@@ -34,8 +35,7 @@ def respond():
     else:
         try:
             # clear the message we got from any non alphabets
-            bot.sendMessage(chat_id=chat_id, text="вы прислали сообщение", reply_to_message_id=msg_id)
-            text = re.sub(r"\W", "_", text)          
+            text = re.sub(r"\W", "_", text)      
             bot.sendMessage(chat_id=chat_id, text=text, reply_to_message_id=msg_id)
         except Exception:
             # if things went wrong
@@ -57,7 +57,7 @@ def set_webhook():
     
 @app.route('/')
 def index():
-    return '  Hello! Bot is runnig now.'
+    return ' Hello! Bot is running now.'
 if __name__ == '__main__':
     # note the threaded arg which allow
     # your app to have more than one thread
