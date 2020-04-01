@@ -1,4 +1,2 @@
 botenv
-telebot/credentials.py
-telebot/database/credentials.py
 *__pycache__
