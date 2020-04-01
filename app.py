@@ -1,6 +1,6 @@
 from flask import Flask, request
 import telegram
-from .bot.credentials import bot_token, bot_user_name, URL
+from bot.credentials import bot_token, bot_user_name, URL
 
 global bot
 global TOKEN
