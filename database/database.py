@@ -18,11 +18,13 @@ def database():
     try:
         cur.execute('''SELECT table_schema,table_name FROM information_schema.tables 
                 WHERE table_schema = 'public' ORDER BY table_schema,table_name;''')
-        if(bool(cur.rowcount)):
-            rows = cur.fetchall()
-            for row in rows:
-                print("dropping table: ", row[1])
+        rows = cur.fetchall()
+        for row in rows:
+            try:
                 cur.execute("DROP TABLE IF EXISTS " + row[1] + " cascade")
+                print("dropping table: ", row[1])
+            except:
+                print("Drop table :"+ row[1]+ "failed")
     except:
         print("Error: ", sys.exc_info()[1])
     
