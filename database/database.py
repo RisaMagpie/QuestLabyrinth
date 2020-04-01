@@ -21,13 +21,11 @@ def database():
         rows = cur.fetchall()
         for row in rows:
             print("dropping table: ", row[1])
-            cur.execute("drop table " + row[1] + " cascade")
-    #     cur.close()
-    #     conn.close()
+            cur.execute("DROP TABLE IF EXISTS " + row[1] + " cascade")
+
     except:
         print("Error: ", sys.exc_info()[1])
-    # cur.execute('''CREATE DATABASE "quest_labyrinth2" WITH ENCODING = 'UTF8';''')
-    # TO DO: look into how to drop whole database and create new, no kust clean it
+    
     cur.execute('''CREATE TABLE  actions_for_state (
     id SERIAL PRIMARY KEY,
     coordinate_x BIGINT NOT NULL,
