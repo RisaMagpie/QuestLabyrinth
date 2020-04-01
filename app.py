@@ -66,7 +66,7 @@ def set_webhook():
     
 @app.route('/')
 def index():
-    return '.'
+    return ' Hello! Bot is running now.'
 if __name__ == '__main__':
     app.run(threaded=True)
     set_webhook()
