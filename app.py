@@ -56,7 +56,7 @@ def set_webhook():
     
 @app.route('/')
 def index():
-    return ' Hello! Bot is running now.'
+    return ' Hello! Bot is running now. You can write in telegram @QuestLabyrinthBot'
 if __name__ == '__main__':
     # note the threaded arg which allow
     # your app to have more than one thread
