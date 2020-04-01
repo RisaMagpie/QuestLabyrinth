@@ -65,7 +65,7 @@ def set_webhook():
     
 @app.route('/')
 def index():
-    return ' Hello! Bot is running now. You can write in telegram @QuestLabyrinthBot'
+    return '.'
 if __name__ == '__main__':
     app.run(threaded=True)
     set_webhook()
