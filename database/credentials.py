@@ -1,3 +1,3 @@
 db_name="quest_labyrinth"
 user="postgres"
-password="5114938w"
+password="enter_postgres_password"

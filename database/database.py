@@ -20,14 +20,14 @@ def database():
                 WHERE table_schema = 'public' ORDER BY table_schema,table_name;''')
         rows = cur.fetchall()
         for row in rows:
-            print("dropping table: ", row[1])
-            cur.execute("drop table " + row[1] + " cascade")
-    #     cur.close()
-    #     conn.close()
+            try:
+                cur.execute("DROP TABLE IF EXISTS " + row[1] + " cascade")
+                print("dropping table: ", row[1])
+            except:
+                print("Drop table :"+ row[1]+ "failed")
     except:
         print("Error: ", sys.exc_info()[1])
-    # cur.execute('''CREATE DATABASE "quest_labyrinth2" WITH ENCODING = 'UTF8';''')
-    # TO DO: look into how to drop whole database and create new, no kust clean it
+    
     cur.execute('''CREATE TABLE  actions_for_state (
     id SERIAL PRIMARY KEY,
     coordinate_x BIGINT NOT NULL,
