@@ -10,7 +10,6 @@ TOKEN = bot_token
 bot = telegram.Bot(token=TOKEN)
 
 app = Flask(__name__)
-set_webhook()
 
 #for routes read here: https://flask.palletsprojects.com/en/1.0.x/quickstart/
 @app.route('/{}'.format(TOKEN), methods=['POST'])
@@ -63,3 +62,4 @@ if __name__ == '__main__':
     # note the threaded arg which allow
     # your app to have more than one thread
     app.run(threaded=True)
+    set_webhook()
