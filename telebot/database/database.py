@@ -1,15 +1,16 @@
+import os
 import sys
 import psycopg2
-from credentials import db_name,user,password
 
 """
 Drop all tables of database you given.
 """
 
+DATABASE_URL = os.environ['DATABASE_URL']
 
 def database():
     try:
-        conn = psycopg2.connect(dbname=db_name, user=user, password=password)
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         conn.set_isolation_level(0)
         conn.autocommit = True
         cur = conn.cursor()
