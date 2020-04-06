@@ -1,7 +1,7 @@
 import os
 import sys
 import psycopg2
-from credentials import db_name,user,password
+#from credentials import db_name,user,password
 
 """
 Drop all tables of database you given.
