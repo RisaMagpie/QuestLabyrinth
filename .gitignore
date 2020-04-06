@@ -1,4 +1,2 @@
 botenv
-notelebot/credentials.py
-notelebot/database/credentials.py
 *__pycache__
