@@ -7,7 +7,7 @@ import psycopg2
 Drop all tables of database you given.
 """
 
-DATABASE_URL = os.environ['postgresql-rigid-74695']
+DATABASE_URL = os.environ['DATABASE_URL']
 
 def database():
     try:
