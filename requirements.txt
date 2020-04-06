@@ -11,6 +11,7 @@ idna==2.9
 itsdangerous==1.1.0
 Jinja2==2.11.1
 MarkupSafe==1.1.1
+psycopg2-binary==2.8.5
 pycparser==2.20
 python-telegram-bot==12.5.1
 requests==2.23.0
