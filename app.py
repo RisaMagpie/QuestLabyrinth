@@ -32,15 +32,15 @@ def respond():
         """
         # send the welcoming message
         bot.sendMessage(chat_id=chat_id, text=bot_welcome, reply_to_message_id=msg_id)
-        
+        """
         # registration:
-        print(str(update.message))
         user_id:int = update.message.from_user.id  
         is_registered:bool = user_register.registration(user_id)        
         if is_registered:
             print("User successfull registered and his state set to init values")
         else:
             print("Registration went wrong")
+	"""
             
     else:          
         try:
@@ -56,7 +56,7 @@ def respond():
 # for messagies arriving:
 @app.route('/setwebhook', methods=['GET', 'POST'])
 def set_webhook():
-    #bot.deleteWebhook()
+    bot.deleteWebhook()
     s = bot.setWebhook('{URL}{HOOK}'.format(URL=URL, HOOK=TOKEN))
     # something to let us know things work
     if s:
