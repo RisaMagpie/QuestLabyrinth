@@ -2,6 +2,7 @@ from flask import Flask, request
 import re
 import telegram
 from telebot.credentials import bot_token, bot_user_name, URL
+from telebot import user_register
 
 global bot
 global TOKEN
@@ -47,6 +48,7 @@ def respond():
 def set_webhook():
     # we use the bot object to link the bot to our app which live
     # in the link provided by URL
+    bot.deleteWebhook()
     s = bot.setWebhook('{URL}{HOOK}'.format(URL=URL, HOOK=TOKEN))
     # something to let us know things work
     if s:
