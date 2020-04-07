@@ -48,8 +48,7 @@ def database():
             item_name character varying(50) NOT NULL
             );''')
         cur.execute('''CREATE TABLE user_state (
-            user_id SERIAL PRIMARY KEY,
-            user_name character varying(50) NOT NULL,
+            user_id integer PRIMARY KEY,
             coordinate_x BIGINT NOT NULL,
             coordinate_y BIGINT NOT NULL,
             time_before_attack BIGINT NOT NULL

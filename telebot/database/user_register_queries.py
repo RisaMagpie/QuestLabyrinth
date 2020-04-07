@@ -1,25 +1,96 @@
+import os
 import psycopg2
 
-DATABASE_URL = os.environ['DATABASE_URL']
 
-def check_user_existance(user_telegram_id:int):
+def check_user_existance(user_telegram_id:int) -> bool:
     """  
     This function checks existance of a user with user_telegram_id in the database.
     """
-    return :bool
+    is_user_exists:bool = False
+    try:
+        DATABASE_URL = os.environ['DATABASE_URL']
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+        conn.set_isolation_level(0)
+        conn.autocommit = True
+        cur = conn.cursor()        
+    except:
+        print("Unable to connect to the database.")
+        
+    if cur:    
+        try:
+            cur.execute("""
+            SELECT user_id
+            FROM user_state
+            WHERE user_state.user_id = %s
+            """, (user_telegram_id))
+            records = cursor.fetchall()
+            if len(records)>0:
+                is_user_exists = True                
+        except:
+            print("Can\'t to execute check_user_existance query") 
+        cur.close()
+        conn.close()
+    return is_user_exists
     
-def set_zero_user_state(user_telegram_id:int):
+def set_zero_user_state(user_telegram_id:int) -> bool:
     """  
-    This function set user coordinates to zero and monster counter to default value.
+    This function set user coordinates to zero and monster counter to init value.
     """
-    return :bool
+    updated_sucessful:bool = False
+    try:
+        DATABASE_URL = os.environ['DATABASE_URL']
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+        conn.set_isolation_level(0)
+        conn.autocommit = True
+        cur = conn.cursor()        
+    except:
+        print("Unable to connect to the database.")
+        
+    if cur:    
+        try:
+            cur.execute("""
+            UPDATE user_state 
+            SET  coordinate_x = 0, 
+            coordinate_y = 0, 
+            time_before_attack = 1000 
+            WHERE user_id = %s;
+            """, (user_telegram_id))
+            updated_sucessful = bool(cur.rowcount)
+            conn.commit()             
+        except:
+            print("Can\'t to execute check_user_existance query") 
+        cur.close()
+        conn.close()
+    return updated_sucessful
     
-def add_new_user(user_telegram_id:int):
+def create_new_user(user_telegram_id:int) -> bool:
     """  
     This function create a new user row and
     set user coordinates to zero and monster counter to default value.
     """
-    return :bool
-
-    
+    created_successful:bool = False
+    try:
+        DATABASE_URL = os.environ['DATABASE_URL']
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+        conn.set_isolation_level(0)
+        conn.autocommit = True
+        cur = conn.cursor()        
+    except:
+        print("Unable to connect to the database.")
+        
+    if cur:    
+        try:
+            cur.execute("""
+            INSERT INTO user_state (user_id, 
+            coordinate_x, 
+            coordinate_y, 
+            time_before_attack) VALUES(%s, 0, 0, 1000)
+            """, (user_telegram_id))
+            conn.commit()          
+            created_successful:bool = True
+        except:
+            print("Can\'t to execute check_user_existance query") 
+        cur.close()
+        conn.close()
+    return created_successful    
     
