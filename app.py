@@ -34,6 +34,7 @@ def respond():
         bot.sendMessage(chat_id=chat_id, text=bot_welcome, reply_to_message_id=msg_id)
         
         # registration:
+	print(update.message)
         user_id:int = update.message.from.id  
         is_registered:bool = user_register.registration(user_id)        
         if is_registered:
