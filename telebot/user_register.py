@@ -1,4 +1,4 @@
-from database import user_register_queries
+from .database import user_register_queries
 
 
 def registration(user_telegram_id:int) -> bool:
