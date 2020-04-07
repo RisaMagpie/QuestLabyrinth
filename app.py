@@ -56,7 +56,7 @@ def respond():
 # for messagies arriving:
 @app.route('/setwebhook', methods=['GET', 'POST'])
 def set_webhook():
-    bot.deleteWebhook()
+    #bot.deleteWebhook()
     s = bot.setWebhook('{URL}{HOOK}'.format(URL=URL, HOOK=TOKEN))
     # something to let us know things work
     if s:
