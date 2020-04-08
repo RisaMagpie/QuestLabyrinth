@@ -82,7 +82,7 @@ def create_new_user(user_telegram_id:int) -> bool:
             INSERT INTO user_state (user_id, 
             coordinate_x, 
             coordinate_y, 
-            time_before_attack) VALUES (%s, 0, 0, 1000)
+            time_before_attack) VALUES (%s, -1, -1, 1000)
             """, (user_telegram_id, ))
             conn.commit()          
             created_successful:bool = True
