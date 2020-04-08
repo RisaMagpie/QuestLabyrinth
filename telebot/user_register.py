@@ -1,7 +1,7 @@
 from .database import user_register_queries
 
 
-def registration(user_telegram_id:int) -> bool:
+def registration(user_telegram_id:int) -> (bool, str, list):
     """
     Before creation of a new user we need to check his existance in the database.
     If user exists we need to update his state to init state.
@@ -18,6 +18,9 @@ def registration(user_telegram_id:int) -> bool:
     # !!!        
     # After that we need to return from database text message and possible actions.
     # But now database is empty.
+    # For example:
+    text:str = "Вы очнулись в точке (0, 0), позади вас и справа от вас есть проход."
+    actions:list = ["пойти назад", "пойти направо"]
  
-    return is_created
+    return is_created, text, actions
     

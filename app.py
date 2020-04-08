@@ -35,9 +35,11 @@ def respond():
 
         # registration:
         user_id:int = update.message.from_user.id
-        is_registered:bool = user_register.registration(user_id)        
+        is_registered:bool, answer_text:str, possible_actions:list = user_register.registration(user_id)        
         if is_registered:
             print("User was successfull registered and his state set to init values")
+            key_board = replykeyboardmarkup.ReplyKeyboardMarkup(possible_actions)
+            bot.sendMessage(chat_id=chat_id, text=answer_text, reply_markup = key_board)
         else:
             text = "Registration went wrong"
             bot.sendMessage(chat_id=chat_id, text=text, reply_to_message_id=msg_id)
