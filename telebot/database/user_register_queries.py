@@ -19,8 +19,8 @@ def check_user_existance(user_telegram_id:int) -> bool:
             cur.execute("""
             SELECT user_id
             FROM user_state
-            WHERE user_id = %s;
-            """, (user_telegram_id))
+            WHERE user_id = %s
+            """, (user_telegram_id, ))
 
             #records = cur.fetchall()
             #if len(records)>0:
