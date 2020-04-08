@@ -9,11 +9,11 @@ def registration(user_telegram_id:int) -> bool:
     After that we need to return from database text message and possible actions.
     """
     is_exist:bool = user_register_queries.check_user_existance(user_telegram_id)
-        
+    
     if is_exist:
         is_created:bool = user_register_queries.set_zero_user_state(user_telegram_id)
     else:
-        is_created:bool = user_register_queries.add_new_user(user_telegram_id)
+        is_created:bool = user_register_queries.create_new_user(user_telegram_id)
             
     # !!!        
     # After that we need to return from database text message and possible actions.
