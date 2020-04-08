@@ -20,7 +20,7 @@ def registration(user_telegram_id:int) -> (bool, str, list):
     # But now database is empty.
     # For example:
     text:str = "Вы очнулись в точке (0, 0), позади вас и справа от вас есть проход."
-    actions:list = ["пойти назад", "пойти направо"]
+    actions:list = [["пойти назад", "пойти направо"]]
  
     return is_created, text, actions
     
