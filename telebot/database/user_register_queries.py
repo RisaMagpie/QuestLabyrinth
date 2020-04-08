@@ -13,19 +13,18 @@ def check_user_existance(user_telegram_id:int) -> bool:
         conn.autocommit = True
         cur = conn.cursor()        
     except:
-        print("Unable to connect to the database.")
-        
+        print("Unable to connect to the database.")        
     if cur:    
         try:
             cur.execute("""
             SELECT user_id
             FROM user_state
-            WHERE user_id = %s
+            WHERE user_id = %s;
             """, (user_telegram_id))
 
-            records = cur.fetchall()
-            if len(records)>0:
-                is_user_exists = True                
+            #records = cur.fetchall()
+            #if len(records)>0:
+            #    is_user_exists = True                
         except:
             print("Can\'t to execute check_user_existance query") 
         cur.close()
