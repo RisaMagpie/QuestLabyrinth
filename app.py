@@ -38,7 +38,7 @@ def respond():
         is_registered:bool, answer_text:str, possible_actions:list = user_register.registration(user_id)        
         if is_registered:
             print("User was successfull registered and his state set to init values")
-            key_board = tlegram.ReplyKeyboardMarkup(possible_actions)
+            key_board = telegram.ReplyKeyboardMarkup(possible_actions)
             bot.sendMessage(chat_id=chat_id, text=answer_text, reply_markup = key_board)
         else:
             text = "Registration went wrong"
