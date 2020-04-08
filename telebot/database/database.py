@@ -57,6 +57,7 @@ def database():
         # con.commit()
         # print("Record inserted successfully")
         print("Operation done successfully")
+        cur.close()
         conn.close()
     except:
         print("Unable to connect to the database.")
