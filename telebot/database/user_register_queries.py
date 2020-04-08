@@ -1,7 +1,6 @@
 import os
 import psycopg2
 
-
 def check_user_existance(user_telegram_id:int) -> bool:
     """  
     This function checks existance of a user with user_telegram_id in the database.
@@ -23,7 +22,8 @@ def check_user_existance(user_telegram_id:int) -> bool:
             FROM user_state
             WHERE user_state.user_id = %s
             """, (user_telegram_id))
-            records = cursor.fetchall()
+
+            records = cur.fetchall()
             if len(records)>0:
                 is_user_exists = True                
         except:
