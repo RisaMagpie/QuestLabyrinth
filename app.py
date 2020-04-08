@@ -46,10 +46,10 @@ def respond():
         try:
             # clear the message we got from any non alphabets
             text = re.sub(r"\W", "_", text)          
-            bot.sendMessage(chat_id=chat_id, text=text)#, reply_to_message_id=msg_id)
+            bot.sendMessage(chat_id=chat_id, text=text)
         except Exception:
             # if things went wrong
-            bot.sendMessage(chat_id=chat_id, text="Упс, что-то пошло не так. Попробуйте перезапустить бота.", reply_to_message_id=msg_id)
+            bot.sendMessage(chat_id=chat_id, text="Упс, что-то пошло не так. Попробуйте перезапустить бота.")
 
     return 'ok'
 

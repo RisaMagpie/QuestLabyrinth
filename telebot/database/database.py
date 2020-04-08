@@ -26,7 +26,7 @@ def database():
             id SERIAL PRIMARY KEY,
             coordinate_x BIGINT NOT NULL,
             coordinate_y BIGINT NOT NULL,
-            possible_action_id integer NOT NULL
+            possible_action_id BIGINT NOT NULL
             );''')
         cur.execute('''CREATE TABLE actions_id (
             action_id SERIAL PRIMARY KEY,
@@ -36,7 +36,7 @@ def database():
             id SERIAL PRIMARY KEY,
             coordinate_x BIGINT NOT NULL,
             coordinate_y BIGINT NOT NULL,
-            current_screenplay_part_id smallint NOT NULL
+            current_screenplay_part_id BIGINT NOT NULL
             );''')
         cur.execute('''CREATE TABLE screenplay_id (
             screenplay_part_id SERIAL PRIMARY KEY,
@@ -44,11 +44,11 @@ def database():
             );''')
         cur.execute('''CREATE TABLE user_inventory (
             id SERIAL PRIMARY KEY,
-            user_id integer NOT NULL,
+            user_id BIGINT NOT NULL,
             item_name character varying(50) NOT NULL
             );''')
         cur.execute('''CREATE TABLE user_state (
-            user_id integer PRIMARY KEY,
+            user_id BIGINT PRIMARY KEY,
             coordinate_x BIGINT NOT NULL,
             coordinate_y BIGINT NOT NULL,
             time_before_attack BIGINT NOT NULL
