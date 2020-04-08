@@ -31,11 +31,11 @@ def respond():
         Этот бот является текстовым квестом. Ваша задача выбраться из лабиринта, не попавшись монстрам в лапы. Пока что это просто бот, который принимает сообщения и возвращает это же собщение без символов.
         """
         # send the welcoming message
-        bot.sendMessage(chat_id=chat_id, text=bot_welcome, reply_to_message_id=msg_id)
+        #bot.sendMessage(chat_id=chat_id, text=bot_welcome, reply_to_message_id=msg_id)
 
         # registration:
         print(type(update.message))
-        user_id:int = update.message['from']['id']  
+        #user_id:int = update.message['from']['id']  
         print("user_id is:", user_id)
         is_registered:bool = user_register.registration(user_id)        
         if is_registered:
