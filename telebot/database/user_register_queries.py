@@ -21,10 +21,9 @@ def check_user_existance(user_telegram_id:int) -> bool:
             FROM user_state
             WHERE user_id = %s
             """, (user_telegram_id, ))
-
-            #records = cur.fetchall()
-            #if len(records)>0:
-            #    is_user_exists = True                
+            records = cur.fetchall()
+            if len(records)>0:
+                is_user_exists = True                
         except:
             print("Can\'t to execute check_user_existance query") 
         cur.close()
@@ -53,7 +52,7 @@ def set_zero_user_state(user_telegram_id:int) -> bool:
             coordinate_y = 0, 
             time_before_attack = 1000 
             WHERE user_id = %s;
-            """, (user_telegram_id))
+            """, (user_telegram_id, ))
             updated_sucessful = bool(cur.rowcount)
             conn.commit()             
         except:
@@ -84,7 +83,7 @@ def create_new_user(user_telegram_id:int) -> bool:
             coordinate_x, 
             coordinate_y, 
             time_before_attack) VALUES (%s, 0, 0, 1000)
-            """, (user_telegram_id))
+            """, (user_telegram_id, ))
             conn.commit()          
             created_successful:bool = True
         except:
