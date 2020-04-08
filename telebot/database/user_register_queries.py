@@ -20,7 +20,7 @@ def check_user_existance(user_telegram_id:int) -> bool:
             cur.execute("""
             SELECT user_id
             FROM user_state
-            WHERE user_state.user_id = %s
+            WHERE user_id = %s
             """, (user_telegram_id))
 
             records = cur.fetchall()
@@ -84,7 +84,7 @@ def create_new_user(user_telegram_id:int) -> bool:
             INSERT INTO user_state (user_id, 
             coordinate_x, 
             coordinate_y, 
-            time_before_attack) VALUES(%s, 0, 0, 1000)
+            time_before_attack) VALUES (%s, 0, 0, 1000)
             """, (user_telegram_id))
             conn.commit()          
             created_successful:bool = True
