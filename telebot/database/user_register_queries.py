@@ -53,8 +53,7 @@ def set_zero_user_state(user_telegram_id:int) -> bool:
             time_before_attack = 1000 
             WHERE user_id = %s;
             """, (user_telegram_id, ))
-            updated_sucessful = bool(cur.rowcount)
-            conn.commit()             
+            updated_sucessful = bool(cur.rowcount)            
         except:
             print("Can\'t to execute set_zero_user_state query") 
         cur.close()
@@ -83,8 +82,7 @@ def create_new_user(user_telegram_id:int) -> bool:
             coordinate_x, 
             coordinate_y, 
             time_before_attack) VALUES (%s, 0, 0, 1000)
-            """, (user_telegram_id, ))
-            conn.commit()          
+            """, (user_telegram_id, ))     
             created_successful:bool = True
         except:
             print("Can\'t to execute create_new_user query") 
