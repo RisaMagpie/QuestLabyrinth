@@ -42,7 +42,7 @@ def respond():
         is_registered, answer_text, possible_actions = user_register.registration(user_id)        
         if is_registered:
             print("User was successfull registered and his state set to init values")
-            possible_actions = possible_actions.append(['Начать сначала'])
+            possible_actions.append(['Начать сначала'])
             key_board = telegram.ReplyKeyboardMarkup(possible_actions)
             bot.sendMessage(chat_id=chat_id, text=answer_text, reply_markup = key_board)
         else:
