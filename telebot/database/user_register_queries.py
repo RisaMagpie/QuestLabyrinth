@@ -48,7 +48,7 @@ def set_zero_user_state(user_telegram_id:int) -> bool:
         try:
             cur.execute("""
             UPDATE user_state 
-            SET  coordinate_x = 1, 
+            SET  coordinate_x = 0, 
             coordinate_y = 0, 
             time_before_attack = 1000 
             WHERE user_id = %s;
