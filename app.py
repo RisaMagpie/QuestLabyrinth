@@ -35,7 +35,7 @@ def respond():
 
         # registration:
         user_id:int = update.message.from_user.id
-        is_registered, answer_text, possible_actions  = user_register.registration(user_id)        
+        is_registered, answer_text, possible_actions : (bool, str, list) = user_register.registration(user_id)        
         if is_registered:
             print("User was successfull registered and his state set to init values")
             possible_actions = possible_actions.append(['Начать сначала'])
