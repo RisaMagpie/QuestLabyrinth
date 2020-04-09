@@ -26,7 +26,7 @@ def respond():
     print("got text message :", text)
     # the first time you chat with the bot AKA the welcoming message
 
-    if text == "/start":
+    if text == "/start" or text == "Начать сначала":
         bot_welcome = """
         Этот бот является текстовым квестом. Ваша задача выбраться из лабиринта, не попавшись монстрам в лапы. Пока что это просто бот, который принимает сообщения и возвращает это же собщение без символов.
         """
@@ -38,6 +38,7 @@ def respond():
         is_registered, answer_text, possible_actions  = user_register.registration(user_id)        
         if is_registered:
             print("User was successfull registered and his state set to init values")
+            possible_actions = possible_actions.append(['Начать сначала'])
             key_board = telegram.ReplyKeyboardMarkup(possible_actions)
             bot.sendMessage(chat_id=chat_id, text=answer_text, reply_markup = key_board)
         else:
@@ -45,6 +46,7 @@ def respond():
             bot.sendMessage(chat_id=chat_id, text=text, reply_to_message_id=msg_id)
             
     else:          
+        # В будущем надо вынести это в отдельный скрипт
         try:
             # clear the message we got from any non alphabets
             text = re.sub(r"\W", "_", text)          
