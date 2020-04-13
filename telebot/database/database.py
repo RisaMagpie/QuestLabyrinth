@@ -65,31 +65,31 @@ def create_database():
                     ADD CONSTRAINT possible_action_id_fk
                     FOREIGN KEY (possible_action_id)
                     REFERENCES actions_id(action_id) 
-                    ON UPDATE CASCADE;''')
+                    ON UPDATE CASCADE ON DELETE CASCADE;''')
 
         cur.execute('''ALTER TABLE screenplay_for_state 
                     ADD CONSTRAINT coordinate_screenplay_fk
                     FOREIGN KEY (coordinate_x,coordinate_y)
                     REFERENCES user_state(coordinate_x,coordinate_y) 
-                    ON UPDATE CASCADE;''')
+                    ON UPDATE CASCADE ON DELETE CASCADE;''')
 
         cur.execute('''ALTER TABLE screenplay_for_state 
                     ADD CONSTRAINT current_screenplay_part_id_fk
                     FOREIGN KEY (current_screenplay_part_id)
                     REFERENCES screenplay_id 
-                    ON UPDATE CASCADE;''')
+                    ON UPDATE CASCADE ON DELETE CASCADE;''')
 
         cur.execute('''ALTER TABLE user_inventory 
                     ADD CONSTRAINT user_id_fk
                     FOREIGN KEY (user_id)
                     REFERENCES user_state(user_id) 
-                    ON DELETE CASCADE;''')
+                     ON UPDATE CASCADE ON DELETE CASCADE;''')
         
         cur.execute('''ALTER TABLE actions_for_state
                     ADD CONSTRAINT coordinate_action_fk
                     FOREIGN KEY (coordinate_x,coordinate_y)
                     REFERENCES user_state(coordinate_x,coordinate_y) 
-                    ON UPDATE CASCADE;''')
+                    ON UPDATE CASCADE ON DELETE CASCADE;''')
 
         print("Table created successfully")
         # con.commit()
