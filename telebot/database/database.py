@@ -68,7 +68,7 @@ def create_database():
                     ON UPDATE CASCADE;''')
 
         cur.execute('''ALTER TABLE screenplay_for_state 
-                    ADD CONSTRAINT coordinate_fk
+                    ADD CONSTRAINT coordinate_screenplay_fk
                     FOREIGN KEY (coordinate_x,coordinate_y)
                     REFERENCES user_state(coordinate_x,coordinate_y) 
                     ON UPDATE CASCADE;''')
@@ -83,7 +83,13 @@ def create_database():
                     ADD CONSTRAINT user_id_fk
                     FOREIGN KEY (user_id)
                     REFERENCES user_state(user_id) 
-                    ON DELETE CASCADE''')
+                    ON DELETE CASCADE;''')
+        
+        cur.execute('''ALTER TABLE actions_for_state
+                    ADD CONSTRAINT coordinate_action_fk
+                    FOREIGN KEY (coordinate_x,coordinate_y)
+                    REFERENCES user_state(coordinate_x,coordinate_y) 
+                    ON UPDATE CASCADE;''')
 
         print("Table created successfully")
         # con.commit()
