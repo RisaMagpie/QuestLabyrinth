@@ -21,6 +21,7 @@ def registration(user_telegram_id:int) -> (bool, str, list):
     # For example:
     text:str = "Вы очнулись в точке (0, 0), позади вас и справа от вас есть проход."
     actions:list = [["пойти назад", "пойти направо"]]
+    actions.append(["начать сначала"])
  
     return is_created, text, actions
     

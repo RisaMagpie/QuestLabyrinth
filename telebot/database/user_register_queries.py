@@ -48,9 +48,9 @@ def set_zero_user_state(user_telegram_id:int) -> bool:
         try:
             cur.execute("""
             UPDATE user_state 
-            SET  coordinate_x = 0, 
-            coordinate_y = 0, 
-            time_before_attack = 1000 
+            SET coordinate_x = DEFAULT, 
+            coordinate_y = DEFAULT, 
+            time_before_attack = DEFAULT 
             WHERE user_id = %s;
             """, (user_telegram_id, ))
             updated_sucessful = bool(cur.rowcount)            
@@ -81,7 +81,8 @@ def create_new_user(user_telegram_id:int) -> bool:
             INSERT INTO user_state (user_id, 
             coordinate_x, 
             coordinate_y, 
-            time_before_attack) VALUES (%s, 0, 0, 1000)
+            time_before_attack) 
+            VALUES (%s, DEFAULT, DEFAULT, DEFAULT)
             """, (user_telegram_id, ))     
             created_successful:bool = True
         except:
