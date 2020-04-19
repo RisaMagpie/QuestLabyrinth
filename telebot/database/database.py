@@ -2,7 +2,7 @@ import os
 import sys
 import psycopg2
 
-from fill_database import fill_database
+from .fill_database import fill_database
 
 """
 Drop all tables of database you given and create whole database.
