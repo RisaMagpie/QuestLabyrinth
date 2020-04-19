@@ -114,24 +114,10 @@ def create_database():
         # con.commit()
         # print("Record inserted successfully")
         print("Operation done successfully")
-        fill_database(cur)
         cur.close()
         conn.close()
     except:
         print("Unable to connect to the database.")
-
-
-def fill_database(cur):
-    actions_names = (
-        (1, 'Пойти прямо'),
-        (2, 'Пойти налево'),
-        (3, 'Пойти направо'),
-        (4, 'Вернуться назад')
-    )
-
-    query = "INSERT INTO actions_id (action_id,action_name) VALUES (%s,%s)"
-    cur.executemany(query, actions_names)
-    print('Filled actions_id table')
 
 
 if __name__ == "__main__":
