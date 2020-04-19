@@ -44,7 +44,7 @@ def fill_database():
     ]
     )
 
-    screenplay_for_state_data = ([
+    screenplay_for_state_data = (
         (0, 0, 1),
         (-1, 2, 4),
         (1, 0, 2),
@@ -54,9 +54,8 @@ def fill_database():
         (1, 1, 2),
         (0, -1, 2),
         (-1, -1, 2),
-        (1, -1, 2),
-    ]
-    );
+        (1, -1, 2), 
+    )
     
     try:
         conn = psycopg2.connect(DATABASE_URL, sslmode='require')
