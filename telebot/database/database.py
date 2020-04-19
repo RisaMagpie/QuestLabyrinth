@@ -2,8 +2,10 @@ import os
 import sys
 import psycopg2
 
+from fill_database import fill_database
+
 """
-Drop all tables of database you given.
+Drop all tables of database you given and create whole database.
 """
 
 DATABASE_URL = os.environ['DATABASE_URL']
@@ -122,3 +124,4 @@ def create_database():
 
 if __name__ == "__main__":
     create_database()
+    fill_database()
