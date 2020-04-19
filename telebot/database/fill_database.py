@@ -72,15 +72,15 @@ def fill_database():
         cur.executemany(query, screenplay_id_data)
         print('Filled screenplay_id table')
 
-        query = "INSERT INTO actions_for_state (id,coordinate_x,coordinate_y,possible_action_id) " \
-                "VALUES (DEFAULT,%s,%s,%s)"
-        cur.executemany(query, actions_for_state_data)
-        print('Filled actions_for_state table')
-
         query = "INSERT INTO screenplay_for_state (coordinate_x,coordinate_y,current_screenplay_part_id) " \
                 "VALUES (%s,%s,%s)"
         cur.executemany(query, screenplay_for_state_data)
         print('Filled screenplay_for_state table')
+        
+        query = "INSERT INTO actions_for_state (id,coordinate_x,coordinate_y,possible_action_id) " \
+                "VALUES (DEFAULT,%s,%s,%s)"
+        cur.executemany(query, actions_for_state_data)
+        print('Filled actions_for_state table')
 
         print("Operation done successfully")
         cur.close()
