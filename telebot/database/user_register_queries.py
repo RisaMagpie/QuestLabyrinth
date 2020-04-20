@@ -87,7 +87,7 @@ def create_new_user(user_telegram_id:int) -> bool:
             created_successful:bool = True
         except Exception as e:
             print("Can\'t to execute create_new_user query") 
-	    print(e)
+            print(e)
         cur.close()
         conn.close()
     return created_successful    
