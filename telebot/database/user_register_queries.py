@@ -85,8 +85,9 @@ def create_new_user(user_telegram_id:int) -> bool:
             VALUES (%s, DEFAULT, DEFAULT, DEFAULT)
             """, (user_telegram_id, ))     
             created_successful:bool = True
-        except:
+        except Exception as e:
             print("Can\'t to execute create_new_user query") 
+            print(e)
         cur.close()
         conn.close()
     return created_successful    
