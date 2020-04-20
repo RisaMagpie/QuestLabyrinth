@@ -1,9 +1,12 @@
 from flask import Flask, request
 import re
 import telegram
-from telebot.credentials import bot_token, bot_user_name, URL
-import re
 from telebot import user_register
+import os
+
+bot_user_name = "QuestLabyrinthBot"
+URL = "https://quest-labyrinth.herokuapp.com/"
+bot_token = os.environ['bot_token']
 
 global bot
 global TOKEN
