@@ -122,6 +122,6 @@ def create_database():
         print("Unable to connect to the database.")
 
 
-if __name__ == "__main__":
+def main():
     create_database()
     fill_database()
