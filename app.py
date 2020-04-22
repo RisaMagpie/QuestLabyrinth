@@ -2,6 +2,7 @@ from flask import Flask, request
 import re
 import telegram
 from telebot import user_register
+from telebot import messagies_processing as msg_proc
 import os
 
 bot_user_name = "QuestLabyrinthBot"
@@ -49,15 +50,16 @@ def respond():
             key_board = telegram.ReplyKeyboardMarkup(possible_actions)
             bot.sendMessage(chat_id=chat_id, text=answer_text, reply_markup = key_board)
         else:
-            text = "Registration went wrong"
-            bot.sendMessage(chat_id=chat_id, text=text, reply_to_message_id=msg_id)
+            answer_text = "Во время регистрации что-то пошло не так."
+            bot.sendMessage(chat_id=chat_id, text=answer_text, reply_to_message_id=msg_id)
             
     else:          
-        # В будущем надо вынести это в отдельный скрипт
         try:
-            # clear the message we got from any non alphabets
-            text = re.sub(r"\W", "_", text)          
-            bot.sendMessage(chat_id=chat_id, text=text)
+            user_id:int = update.message.from_user.id
+            # answer_text, possible_actions = msg_proc.prepare_answer(text, user_id)
+            # possible_actions.append(['Начать сначала'])
+            # key_board = telegram.ReplyKeyboardMarkup(possible_actions)
+            # bot.sendMessage(chat_id=chat_id, text=answer_text, reply_markup = key_board)
         except Exception:
             # if things went wrong
             bot.sendMessage(chat_id=chat_id, text="Упс, что-то пошло не так. Попробуйте перезапустить бота.")
