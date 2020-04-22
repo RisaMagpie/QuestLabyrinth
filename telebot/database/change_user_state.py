@@ -20,6 +20,7 @@ def get_user_state(user_id:int)->(int,int,int):
             WHERE user_id = %s
             """, (user_telegram_id, ))
             record = cur.fetchone()
+            print(record)
             coordinate_x = record[0]
             coordinate_y = record[1]
             time_before_attack = record[2]            
