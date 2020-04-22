@@ -20,8 +20,11 @@ def get_user_state(user_id:int)->(int,int,int):
             WHERE user_id = %s
             """, (user_id, ))
             record = cur.fetchone()
+            print(record)
             coordinate_x = record[0]
+            print(coordinate_x)
             coordinate_y = record[1]
+            print(coordinate_y)
             time_before_attack = record[2]            
         except:
             print("Can\'t to execute get_user_state query") 
