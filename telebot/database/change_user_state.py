@@ -15,7 +15,7 @@ def get_user_state(user_id:int)->(int,int,int):
     if cur:    
         try:
             cur.execute("""
-            SELECT coordinate_x, coordinate_y, time_before_attack
+            SELECT (coordinate_x, coordinate_y, time_before_attack)
             FROM user_state
             WHERE user_id = %s
             """, (user_telegram_id, ))
