@@ -15,12 +15,12 @@ def get_user_state(user_id:int)->(int,int,int):
     if cur:    
         try:
             cur.execute("""
-            SELECT (coordinate_x, coordinate_y, time_before_attack)
+            SELECT coordinate_x, coordinate_y, time_before_attack
             FROM user_state
             WHERE user_id = %s
             """, (user_id, ))
             record = cur.fetchone()[0]
-            coordinate_x = record[0]
+            coordinate_x = int(record[0])
             coordinate_y = record[1]
             time_before_attack = record[2]            
         except:
