@@ -18,9 +18,8 @@ def get_user_state(user_id:int)->(int,int,int):
             SELECT (coordinate_x, coordinate_y, time_before_attack)
             FROM user_state
             WHERE user_id = %s
-            """, (user_telegram_id, ))
+            """, (user_id, ))
             record = cur.fetchone()
-            print(record)
             coordinate_x = record[0]
             coordinate_y = record[1]
             time_before_attack = record[2]            
@@ -61,7 +60,7 @@ def update_state(user_id:int, delta_x:int, delta_y:int) -> (int, int):
             time_before_attack = %s
             WHERE user_id = %s;
             """, (coordinate_x_new, coordinate_y_new, 
-                  time_before_attack, user_telegram_id))
+                  time_before_attack, user_id))
             updated_sucessful = bool(cur.rowcount)
         except:
             print("Can\'t to execute get_user_state query") 
