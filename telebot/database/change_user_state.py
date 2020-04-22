@@ -51,6 +51,8 @@ def update_state(user_id:int, delta_x:int, delta_y:int) -> (int, int):
         cur = conn.cursor()        
     except:
         print("Unable to connect to the database.")   
+        
+    updated_sucessful = False
     if cur:    
         try:
             cur.execute("""
