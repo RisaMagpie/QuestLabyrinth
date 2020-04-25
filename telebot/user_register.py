@@ -1,5 +1,5 @@
 from .database import user_register_queries
-
+from .database import get_queries as get
 
 def registration(user_telegram_id:int) -> (bool, str, list):
     """
@@ -15,12 +15,12 @@ def registration(user_telegram_id:int) -> (bool, str, list):
     else:
         is_created:bool = user_register_queries.create_new_user(user_telegram_id)
             
-    # !!!        
-    # After that we need to return from database text message and possible actions.
-    # But now database is empty.
-    # For example:
-    text:str = "Вы очнулись в точке (0, 0), позади вас и справа от вас есть проход."
-    actions:list = [["пойти назад", "пойти направо"]]
+    actions = []      
+    if is_created:
+        text = get.get_screenplay_part_text(0, 0)
+        actions.append(get.get_possible_actions_text(0, 0))
+    else:
+        text = "Извините, что-то пошло не так и Вы не были зарегистрированы"
 
     return is_created, text, actions
     
