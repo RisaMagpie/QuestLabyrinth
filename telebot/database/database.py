@@ -68,11 +68,17 @@ def create_database():
             UNIQUE(user_id, item_name)
         );''')
         print("user_inventory table created 5/6")
+        
+        print("creating type")
+        
+        cur.execute('''CREATE TYPE direction 
+                    AS ENUM ('north', 'east', 'south','west');''')
 
         cur.execute('''CREATE TABLE user_state (
             user_id BIGINT PRIMARY KEY,
             coordinate_x BIGINT NOT NULL DEFAULT 0,
             coordinate_y BIGINT NOT NULL DEFAULT 0,
+            current_direction direction NOT NULL DEFAULT north,
             time_before_attack BIGINT NOT NULL DEFAULT 1000
         );''')
         print("user_state table created 6/6")
