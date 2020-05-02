@@ -73,3 +73,26 @@ def update_state(user_id:int, delta_x:int, delta_y:int) -> (int, int):
         return coordinate_x_new, coordinate_y_new
     else:
         return coordinate_x, coordinate_y
+
+def update_user_direction(user_id:int, new_direction:str):
+    """Update user direction of move."""    
+    try:
+        DATABASE_URL = os.environ['DATABASE_URL']
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+        conn.set_isolation_level(0)
+        conn.autocommit = True
+        cur = conn.cursor()        
+    except:
+        print("Unable to connect to the database.")   
+        
+    if cur:    
+        try:
+            cur.execute("""
+            UPDATE user_state 
+            SET current_direction = %s, 
+            WHERE user_id = %s;
+            """, (new_direction, user_id))
+        except:
+            print("Update user direction wasnt successful") 
+        cur.close()
+        conn.close()
