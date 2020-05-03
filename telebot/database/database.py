@@ -72,7 +72,7 @@ def create_database():
         print("creating type")
         
         cur.execute('''CREATE TYPE direction 
-                    AS ENUM ('north', 'east', 'south','west');''')
+                    AS ENUM ('north', 'east', 'south', 'west');''')
 
         cur.execute('''CREATE TABLE user_state (
             user_id BIGINT PRIMARY KEY,

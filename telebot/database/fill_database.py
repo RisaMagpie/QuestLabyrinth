@@ -11,10 +11,10 @@ DATABASE_URL = os.environ['DATABASE_URL']
 
 def fill_database():
     actions_id_data = (
-        (1, 'Пойти прямо'),
-        (2, 'Пойти налево'),
-        (3, 'Пойти направо'),
-        (4, 'Вернуться назад')
+        (1, 'Вверх'),
+        (2, 'Налево'),
+        (3, 'Направо'),
+        (4, 'Вниз')
     )
 
     screenplay_id_data = (

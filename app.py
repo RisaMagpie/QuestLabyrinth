@@ -40,9 +40,9 @@ def respond():
         # registration:
         user_id:int = update.message.from_user.id
 
-        is_registered : bool
-        answer_text : str
-        possible_actions : list
+        is_registered: bool
+        answer_text: str
+        possible_actions: list
         is_registered, answer_text, possible_actions = user_register.registration(user_id)        
         if is_registered:
             print("User was successfull registered and his state set to init values")
