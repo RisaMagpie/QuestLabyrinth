@@ -56,10 +56,10 @@ def respond():
     else:          
         try:
             user_id:int = update.message.from_user.id
-            # answer_text, possible_actions = msg_proc.prepare_answer(text, user_id)
-            # possible_actions.append(['Начать сначала'])
-            # key_board = telegram.ReplyKeyboardMarkup(possible_actions)
-            # bot.sendMessage(chat_id=chat_id, text=answer_text, reply_markup = key_board)
+            answer_text, possible_actions = msg_proc.prepare_answer(text, user_id)
+            possible_actions.append(['Начать сначала'])
+            key_board = telegram.ReplyKeyboardMarkup(possible_actions)
+            bot.sendMessage(chat_id=chat_id, text=answer_text, reply_markup = key_board)
         except Exception:
             # if things went wrong
             bot.sendMessage(chat_id=chat_id, text="Упс, что-то пошло не так. Попробуйте перезапустить бота.")
