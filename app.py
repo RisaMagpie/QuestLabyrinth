@@ -58,7 +58,6 @@ def respond():
         try:
             user_id:int = update.message.from_user.id
             answer_text, possible_actions = msg_proc.prepare_answer(text, user_id)
-            possible_actions = [possible_actions]
             possible_actions.append(['Начать сначала'])
             print(possible_actions)
             if type(possible_actions[0])==list and len(possible_actions[0])>2:
