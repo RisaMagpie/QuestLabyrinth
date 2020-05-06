@@ -1,5 +1,5 @@
 from .database.change_user_state import (update_state, get_user_state)
-from .get_queries import (get_possible_actions_text, get_screenplay_part_text)
+from .database.get_queries import (get_possible_actions_text, get_screenplay_part_text)
 
 directions = ('north', 'east', 'south', 'west')
 user_actions = ('Пойти вперед', 'Пойти направо', 'Вернуться назад', 'Пойти налево')
