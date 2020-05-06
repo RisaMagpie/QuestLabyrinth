@@ -21,16 +21,20 @@ def prepare_answer(msg_text:str, user_id:int) -> (str, list):
     current_direction: str
     time_before_attack: int 
     coordinate_x, coordinate_y, current_direction, time_before_attack = get_user_state(user_id)
+    print("User state was got")
     possible_actions: List[str] = get_possible_actions_text(coordinate_x, coordinate_y)
+    print("Possible actions were got")
     ## Изменение действия пользователя таким образом, как если бы он смотрел на север.
     ## То есть с точки зрения разработчика, который смотрит на карту.
     increment_for_direction_action = directions.index(current_direction)
     action = actions[(user_actions.index(msg_text)+increment_for_direction_action)%4]
-    
+    print("Action was changed to north")    
+
     if action not in possible_actions:
         answer_text = "Это действие выполнить невозможно."
         # Игрок остается в том же состоянии, ему предлагается выполнить действия, которые возможны
         actions = process_actions_for_direction(possible_actions, current_direction)
+        print("Return last opportunities")
         return answer_text, actions
     
     # 2. Меняем состояние пользователя.
@@ -50,12 +54,13 @@ def prepare_answer(msg_text:str, user_id:int) -> (str, list):
                                                                 coordinate_x, coordinate_y, 
                                                                 current_direction, time_before_attack,
                                                                 direction)
-    
+    print("User state was updated")     
     # 3. Вычисляем действия в виде для пользователя.
     # Возвращаем действия и текст сценария.
     actions = get_possible_actions_text(coordinate_x, coordinate_y)
     answer_text = get_screenplay_part_text(coordinate_x, coordinate_y)
+    print("Actions and screenplay were got") 
     # Перевод действий в координаты пользователя:
     actions = process_actions_for_direction(actions, direction)
-
+    print("Actions were changed") 
     return answer_text, actions
