@@ -28,6 +28,9 @@ def create_database():
             cur.execute("DROP TABLE IF EXISTS " + row[1] + " cascade")
             print("dropping table: ", row[1])
 
+        print("dropping existed data type")
+        cur.execute('''DROP TYPE IF EXISTS direction CASCADE;''')
+
         print("creating tables...")
 
         cur.execute('''CREATE TABLE actions_id (
