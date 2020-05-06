@@ -69,10 +69,10 @@ def create_database():
         );''')
         print("user_inventory table created 5/6")
         
-        print("creating type")
-        
+        print("creating type")        
         cur.execute('''CREATE TYPE direction 
-                    AS ENUM ('north', 'east', 'south','west');''')
+                    AS ENUM ('north', 'east', 'south', 'west');''')
+        print("type was created")
 
         cur.execute('''CREATE TABLE user_state (
             user_id BIGINT PRIMARY KEY,
