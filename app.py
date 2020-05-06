@@ -62,10 +62,11 @@ def respond():
             print(possible_actions)
             if type(possible_actions[0])==list and len(possible_actions[0])>2:
                 new_actions = []
-                new_actions.append([possible_actions[0][:2]])
-                new_actions.append([possible_actions[0][2:]])
-                new_actions.append([possible_actions[1:]])
+                new_actions.append(possible_actions[0][:2])
+                new_actions.append(possible_actions[0][2:])
+                new_actions.append(possible_actions[1][0])
                 print(new_actions)
+                possible_actions = new_actions
 
             key_board = telegram.ReplyKeyboardMarkup(possible_actions)
             bot.sendMessage(chat_id=chat_id, text=answer_text, reply_markup = key_board)
