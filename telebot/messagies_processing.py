@@ -55,10 +55,10 @@ def prepare_answer(msg_text:str, user_id:int) -> (str, list):
     print("User state was updated")     
     # 3. Вычисляем действия в виде для пользователя.
     # Возвращаем действия и текст сценария.
-    actions = get_possible_actions_text(coordinate_x, coordinate_y)
-    answer_text = get_screenplay_part_text(coordinate_x, coordinate_y)
+    actions = get_possible_actions_text(coordinate_x_new, coordinate_y_new)
+    answer_text = get_screenplay_part_text(coordinate_x_new, coordinate_y_new)
     print("Actions and screenplay were got") 
     # Перевод действий в координаты пользователя:
-    actions = process_actions_for_direction(actions, direction)
+    actions = [process_actions_for_direction(actions, direction)]
     print("Actions were changed") 
     return answer_text, actions
