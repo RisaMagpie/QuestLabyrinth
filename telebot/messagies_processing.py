@@ -1,16 +1,14 @@
 from .database.change_user_state import (update_state, get_user_state)
 from .database.get_queries import (get_possible_actions_text, get_screenplay_part_text)
+from .lists_for_directions_and_actions_processing import (DIRECTIONS, USER_ACTIONS, ACTIONS)
 
-directions = ('north', 'east', 'south', 'west')
-user_actions = ('Пойти вперед', 'Пойти направо', 'Вернуться назад', 'Пойти налево')
-actions = ('Вверх', 'Направо', 'Вниз', 'Налево')
 
 def process_actions_for_direction(possible_actions: list, 
                                   current_direction:str)-> list:
     actions = []
     for possible_action in possible_actions:
-        decrement_for_direction_action = directions.index(current_direction)
-        action = user_actions[(actions.index(possible_action)-decrement_for_direction_action)%4]
+        decrement_for_direction_action = DIRECTIONS.index(current_direction)
+        action = USER_ACTIONS[(ACTIONS.index(possible_action)-decrement_for_direction_action)%4]
         actions.append(action)
     return actions
 
@@ -22,12 +20,12 @@ def prepare_answer(msg_text:str, user_id:int) -> (str, list):
     time_before_attack: int 
     coordinate_x, coordinate_y, current_direction, time_before_attack = get_user_state(user_id)
     print("User state was got")
-    possible_actions: List[str] = get_possible_actions_text(coordinate_x, coordinate_y)
+    possible_actions: list = get_possible_actions_text(coordinate_x, coordinate_y)
     print("Possible actions were got")
     ## Изменение действия пользователя таким образом, как если бы он смотрел на север.
     ## То есть с точки зрения разработчика, который смотрит на карту.
-    increment_for_direction_action = directions.index(current_direction)
-    action = actions[(user_actions.index(msg_text)+increment_for_direction_action)%4]
+    increment_for_direction_action = DIRECTIONS.index(current_direction)
+    action = ACTIONS[(USER_ACTIONS.index(msg_text)+increment_for_direction_action)%4]
     print("Action was changed to north")    
 
     if action not in possible_actions:
@@ -47,8 +45,8 @@ def prepare_answer(msg_text:str, user_id:int) -> (str, list):
     }
     delta_x, delta_y = delta_dict[action]
     ## Меняем направление просмотра в зависимости от действия.
-    increment_for_direction_action = user_action.index(msg_text)
-    direction = directions[(directions.index(current_direction)+increment_for_direction_action)%4]
+    increment_for_direction_action = USER_ACTIONS.index(msg_text)
+    direction = DIRECTIONS[(DIRECTIONS.index(current_direction)+increment_for_direction_action)%4]
 
     coordinate_x_new, coordinate_y_new = update_state(user_id, delta_x, delta_y,
                                                                 coordinate_x, coordinate_y, 
