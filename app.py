@@ -64,7 +64,7 @@ def respond():
                 new_actions = []
                 new_actions.append(possible_actions[0][:2])
                 new_actions.append(possible_actions[0][2:])
-                new_actions.append(possible_actions[1][0])
+                new_actions.append(possible_actions[1])
                 print(new_actions)
                 possible_actions = new_actions
 
