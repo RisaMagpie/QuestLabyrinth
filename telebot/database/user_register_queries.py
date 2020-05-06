@@ -50,6 +50,7 @@ def set_zero_user_state(user_telegram_id:int) -> bool:
             UPDATE user_state 
             SET coordinate_x = DEFAULT, 
             coordinate_y = DEFAULT, 
+            current_direction = DEFAULT, 
             time_before_attack = DEFAULT 
             WHERE user_id = %s;
             """, (user_telegram_id, ))
@@ -81,8 +82,9 @@ def create_new_user(user_telegram_id:int) -> bool:
             INSERT INTO user_state (user_id, 
             coordinate_x, 
             coordinate_y, 
+            current_direction,
             time_before_attack) 
-            VALUES (%s, DEFAULT, DEFAULT, DEFAULT)
+            VALUES (%s, DEFAULT, DEFAULT, DEFAULT, DEFAULT)
             """, (user_telegram_id, ))     
             created_successful:bool = True
         except Exception as e:
