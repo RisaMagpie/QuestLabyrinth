@@ -46,8 +46,9 @@ def prepare_answer(msg_text:str, user_id:int) -> (str, list):
     delta_x, delta_y = delta_dict[action]
     ## Меняем направление просмотра в зависимости от действия.
     increment_for_direction_action = USER_ACTIONS.index(msg_text)
+    print("Current direction:", current_direction)
     direction = DIRECTIONS[(DIRECTIONS.index(current_direction)+increment_for_direction_action)%4]
-
+    print("New direction:", direction)
     coordinate_x_new, coordinate_y_new = update_state(user_id, delta_x, delta_y,
                                                                 coordinate_x, coordinate_y, 
                                                                 current_direction, time_before_attack,
