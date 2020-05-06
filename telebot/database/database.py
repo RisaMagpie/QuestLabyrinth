@@ -78,7 +78,7 @@ def create_database():
             user_id BIGINT PRIMARY KEY,
             coordinate_x BIGINT NOT NULL DEFAULT 0,
             coordinate_y BIGINT NOT NULL DEFAULT 0,
-            current_direction direction NOT NULL DEFAULT north,
+            current_direction direction NOT NULL DEFAULT 'north',
             time_before_attack BIGINT NOT NULL DEFAULT 1000
         );''')
         print("user_state table created 6/6")
