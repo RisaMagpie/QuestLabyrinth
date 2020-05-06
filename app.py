@@ -58,12 +58,14 @@ def respond():
         try:
             user_id:int = update.message.from_user.id
             answer_text, possible_actions = msg_proc.prepare_answer(text, user_id)
-            if len(possible_actions[0])>2:
+            possible_actions.append(['Начать сначала'])
+            print(possible_actions)
+            if type(possible_actions[0])==list and len(possible_actions[0])>2:
                 new_actions = []
                 new_actions.append([possible_actions[0][:2]])
                 new_actions.append([possible_actions[0][2:]])
                 possible_actions = new_actions
-            possible_actions.append(['Начать сначала'])
+
             key_board = telegram.ReplyKeyboardMarkup(possible_actions)
             bot.sendMessage(chat_id=chat_id, text=answer_text, reply_markup = key_board)
         except Exception:
