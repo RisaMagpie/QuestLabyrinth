@@ -1,4 +1,4 @@
-from .database import (change_user_state, get_user_state)
+from .database.change_user_state import (update_state, get_user_state)
 from .get_queries import (get_possible_actions_text, get_screenplay_part_text)
 
 directions = ('north', 'east', 'south', 'west')
@@ -46,7 +46,7 @@ def prepare_answer(msg_text:str, user_id:int) -> (str, list):
     increment_for_direction_action = user_action.index(msg_text)
     direction = directions[(directions.index(current_direction)+increment_for_direction_action)%4]
 
-    coordinate_x_new, coordinate_y_new = change_user_state.update_state(user_id, delta_x, delta_y,
+    coordinate_x_new, coordinate_y_new = update_state(user_id, delta_x, delta_y,
                                                                 coordinate_x, coordinate_y, 
                                                                 current_direction, time_before_attack,
                                                                 direction)
