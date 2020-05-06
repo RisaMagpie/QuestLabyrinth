@@ -5,8 +5,8 @@ directions = ('north', 'east', 'south', 'west')
 user_actions = ('Пойти вперед', 'Пойти направо', 'Вернуться назад', 'Пойти налево')
 actions = ('Вверх', 'Направо', 'Вниз', 'Налево')
 
-def process_actions_for_direction(possible_actions: List[str], 
-                                  current_direction:str)->List[str]:
+def process_actions_for_direction(possible_actions: list, 
+                                  current_direction:str)-> list:
     actions = []
     for possible_action in possible_actions:
         decrement_for_direction_action = directions.index(current_direction)
