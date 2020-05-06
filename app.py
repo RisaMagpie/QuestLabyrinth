@@ -64,7 +64,8 @@ def respond():
                 new_actions = []
                 new_actions.append([possible_actions[0][:2]])
                 new_actions.append([possible_actions[0][2:]])
-                possible_actions = new_actions
+                new_actions.append([possible_actions[1:])
+                print(new_actions)
 
             key_board = telegram.ReplyKeyboardMarkup(possible_actions)
             bot.sendMessage(chat_id=chat_id, text=answer_text, reply_markup = key_board)
