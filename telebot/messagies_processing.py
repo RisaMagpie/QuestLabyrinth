@@ -24,8 +24,11 @@ def prepare_answer(msg_text:str, user_id:int) -> (str, list):
     print("Possible actions were got")
     ## Изменение действия пользователя таким образом, как если бы он смотрел на север.
     ## То есть с точки зрения разработчика, который смотрит на карту.
+    print("Current direction: ", current_direction)
+    print("User action: ", msg_text)
     increment_for_direction_action = DIRECTIONS.index(current_direction)
     action = ACTIONS[(USER_ACTIONS.index(msg_text)+increment_for_direction_action)%4]
+    print("New action: ", action)
     print("Action was changed to north")    
 
     if action not in possible_actions:
