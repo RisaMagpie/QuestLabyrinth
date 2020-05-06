@@ -19,7 +19,7 @@ def registration(user_telegram_id:int) -> (bool, str, list):
     actions = []      
     if is_created:
         text = get.get_screenplay_part_text(0, 0)
-        actions = get.get_possible_actions_text(0, 0)
+        actions.append(get.get_possible_actions_text(0, 0))
         actions = process_actions_for_direction(actions, 'north')
     else:
         text = "Извините, что-то пошло не так и Вы не были зарегистрированы"
