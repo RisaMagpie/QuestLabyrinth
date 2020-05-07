@@ -72,7 +72,7 @@ def update_state(user_id:int, delta_x:int, delta_y:int,
                   user_id))
             updated_sucessful = bool(cur.rowcount)
         except:
-            print("Can\'t to execute get_user_state query") 
+            print("Can\'t to execute update_user_state query") 
         cur.close()
         conn.close()
         

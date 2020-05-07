@@ -63,6 +63,9 @@ def prepare_answer(msg_text:str, user_id:int) -> (str, list):
     answer_text = get_screenplay_part_text(coordinate_x_new, coordinate_y_new)
     print("Actions and screenplay were got") 
     # Перевод действий в координаты пользователя:
-    actions = [process_actions_for_direction(actions, direction)]
+    if (coordinate_x_new==coordinate_x) and (coordinate_y_new==coordinate_y):
+        actions = [process_actions_for_direction(actions, current_direction)]
+    else:
+        actions = [process_actions_for_direction(actions, direction)]
     print("Actions were changed") 
     return answer_text, actions
