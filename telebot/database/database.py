@@ -28,6 +28,9 @@ def create_database():
             cur.execute("DROP TABLE IF EXISTS " + row[1] + " cascade")
             print("dropping table: ", row[1])
 
+        print("dropping existed data type")
+        cur.execute('''DROP TYPE IF EXISTS direction CASCADE;''')
+
         print("creating tables...")
 
         cur.execute('''CREATE TABLE actions_id (
@@ -69,17 +72,17 @@ def create_database():
         );''')
         print("user_inventory table created 5/6")
         
-        print("creating type")
-        
+        print("creating type")        
         cur.execute('''CREATE TYPE direction 
-                    AS ENUM ('north', 'east', 'south','west');''')
+                    AS ENUM ('north', 'east', 'south', 'west');''')
+        print("type was created")
 
         cur.execute('''CREATE TABLE user_state (
             user_id BIGINT PRIMARY KEY,
             coordinate_x BIGINT NOT NULL DEFAULT 0,
             coordinate_y BIGINT NOT NULL DEFAULT 0,
-            current_direction direction NOT NULL DEFAULT north,
-            time_before_attack BIGINT NOT NULL DEFAULT 1000
+            current_direction direction NOT NULL DEFAULT 'north',
+            time_before_attack BIGINT NOT NULL DEFAULT 7
         );''')
         print("user_state table created 6/6")
 

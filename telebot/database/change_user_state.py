@@ -15,24 +15,27 @@ def get_user_state(user_id:int)->(int,int,int):
     if cur:    
         try:
             cur.execute("""
-            SELECT coordinate_x, coordinate_y, time_before_attack
+            SELECT coordinate_x, coordinate_y, current_direction, time_before_attack
             FROM user_state
             WHERE user_id = %s;
             """, (user_id, ))
             record = cur.fetchone()
             coordinate_x = record[0]
             coordinate_y = record[1]
-            time_before_attack = record[2]            
+            current_direction = record[2]          
+            time_before_attack = record[3]            
         except:
             print("Can\'t to execute get_user_state query") 
         cur.close()
         conn.close()
-    return coordinate_x, coordinate_y, time_before_attack
+    return coordinate_x, coordinate_y, current_direction, time_before_attack
 
 
-def update_state(user_id:int, delta_x:int, delta_y:int) -> (int, int):
+def update_state(user_id:int, delta_x:int, delta_y:int, 
+                 coordinate_x: int, coordinate_y:int, 
+                 current_direction: str, time_before_attack: int,
+                 direction: str) -> (int, int):
     """User chose direction of move. This function change user state coordinates and time_before_attack and return new coordinates for getting actions and screenplay."""
-    coordinate_x, coordinate_y, time_before_attack = get_user_state(user_id)
     
     time_before_attack -= 1
     
@@ -59,13 +62,17 @@ def update_state(user_id:int, delta_x:int, delta_y:int) -> (int, int):
             UPDATE user_state 
             SET coordinate_x = %s, 
             coordinate_y = %s, 
+            current_direction = %s, 
             time_before_attack = %s
             WHERE user_id = %s;
-            """, (coordinate_x_new, coordinate_y_new, 
-                  time_before_attack, user_id))
+            """, (coordinate_x_new, 
+                  coordinate_y_new, 
+                  direction,
+                  time_before_attack, 
+                  user_id))
             updated_sucessful = bool(cur.rowcount)
         except:
-            print("Can\'t to execute get_user_state query") 
+            print("Can\'t to execute update_user_state query") 
         cur.close()
         conn.close()
         
@@ -73,26 +80,3 @@ def update_state(user_id:int, delta_x:int, delta_y:int) -> (int, int):
         return coordinate_x_new, coordinate_y_new
     else:
         return coordinate_x, coordinate_y
-
-def update_user_direction(user_id:int, new_direction:str):
-    """Update user direction of move."""    
-    try:
-        DATABASE_URL = os.environ['DATABASE_URL']
-        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-        conn.set_isolation_level(0)
-        conn.autocommit = True
-        cur = conn.cursor()        
-    except:
-        print("Unable to connect to the database.")   
-        
-    if cur:    
-        try:
-            cur.execute("""
-            UPDATE user_state 
-            SET current_direction = %s, 
-            WHERE user_id = %s;
-            """, (new_direction, user_id))
-        except:
-            print("Update user direction wasnt successful") 
-        cur.close()
-        conn.close()
