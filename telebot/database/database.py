@@ -59,7 +59,7 @@ def create_database():
 
         cur.execute('''CREATE TABLE screenplay_id (
             screenplay_part_id SERIAL PRIMARY KEY,
-            screenplay_part_text character varying(50) NOT NULL,
+            screenplay_part_text character varying(150) NOT NULL,
             UNIQUE (screenplay_part_text)
         );''')
         print("screenplay_id table created 4/6")
