@@ -1,9 +1,10 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
 import re
 import telegram
 from telebot import user_register
 from telebot import messagies_processing as msg_proc
 import os
+
 
 bot_user_name = "QuestLabyrinthBot"
 URL = "https://quest-labyrinth.herokuapp.com/"
@@ -86,10 +87,10 @@ def set_webhook():
         return "webhook setup ok"
     else:
         return "webhook setup failed"
-    
+  
 @app.route('/')
 def index():
-    return ' Hello! Bot is running now. You can write in telegram @QuestLabyrinthBot'
+    return render_template('index.html')
 if __name__ == '__main__':
     app.run(threaded=True)
     set_webhook()
