@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>QuestLabyrinthBot</title>
 <style>
-      .button {
+* {
+  box-sizing: border-box;
+}
+.button {
         background-color: #1c87c9;
         border: none;
         color: white;
@@ -14,12 +18,75 @@
         font-size: 20px;
         margin: 4px 2px;
         cursor: pointer;
-      }
-    </style>
-</head>
-<body>
+}
+.header {
+  padding: 5px; 
+  text-align: center; 
+  background: #000000; 
+  color: white; 
+}
+.text {
+  padding: 1px; 
+  text-align: center; 
+  background: #000000; 
+  color: white; 
+}
 
-<p>Hello! Bot is running now. You can write in telegram <b>@QuestLabyrinthBot</b> or press the button.</p>
+.header h1 {
+  font-size: 40px;
+}
+
+.column {
+  float: left;
+  width: 50%;
+  padding: 10px;
+  height: 100px; 
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.right {
+  display: block;
+  border-radius: 25px;
+  opacity: 0.75;
+  margin-left: auto;
+  margin-right: 5px;
+  width: 50%;
+}
+.left {
+  display: block;
+  border-radius: 15px;
+  opacity: 0.75;
+  margin-left: 5px;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+
+<div class="header">
+  <h1>@QuestLabyrinthBot</h1>
+  <p>Квестовый чат-бот в telegram</p>
+</div> 
+</head>
+<body style="background-color:#000;">
+<div class="header">
+  <p>Бот уже доступен по ссылке в telegram. Чтобы начать приключение достаточно написать ему.</p>
+</div> 
+
+<div class="row">
+  <div class="column">
+     <img src="bot.jpg" alt="bot" class="right"> 
+  </div>
+  <div class="column">
+     <img src="keyboard.jpg" alt="keyboard" class="left"> 
+  </div>
+</div>
+
 
 
 <script script data-align="right" data-overlay="false" id="keyreply-script" type="text/javascript" data-color="#03A9F4" data-apps="JTdCJTIydGVsZWdyYW0lMjI6JTIyUXVlc3RMYWJ5cmludGhCb3QlMjIlN0Q=">
@@ -118,7 +185,7 @@
             });
 
         if (!whitelabel) {
-            var brand = $('<a target="_blank" href="https://keyreply.com/chat/?ref=getwidget">get widget</a>')
+            var brand = $('<a target="_blank" href="https://keyreply.com/chat/?ref=getwidget"> </a>')
                 .addClass('keyreply-brand')
                 .appendTo(launcher)
                 .click(function(event) {
