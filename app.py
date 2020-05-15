@@ -46,7 +46,7 @@ def respond():
         is_registered, answer_text, possible_actions = user_register.registration(user_id)        
         if is_registered:
             print("User was successfull registered and his state set to init values")
-            answer_text = """Вы просыпаетесь от того, что истошный крик врывается в ваше сознание. Вокруг вас лишь одна темнота. И вдруг этот крик прерывается булькающими звуками. Кровь стынет у вас в жилах, а в голове царит паника..."""
+            answer_text = """Вы просыпаетесь от того, что истошный резкий крик врывается в ваше сознание. Вокруг вас лишь одна    пугающая темнота. И вдруг этот ужасный  крик перходит в булькающие звуки. Кровь стынет у вас в жилах, а в голове царит паника...Вы осознаете, что находитесь в тесном и узком коридоре, ведущем в темноту и таящем в себе неизведанные опасности.Надо спасаться!Но каждый свой шаг вы должны тщательно обдумать, ведь в загадочной темноте вас  поджидает  монстр, от одного крика которого волосы встают дыбом """
             possible_actions.append(['Начать сначала'])
             key_board = telegram.ReplyKeyboardMarkup(possible_actions)
             bot.sendMessage(chat_id=chat_id, text=answer_text, reply_markup = key_board)
