@@ -82,7 +82,7 @@ def create_database():
             coordinate_x BIGINT NOT NULL DEFAULT 0,
             coordinate_y BIGINT NOT NULL DEFAULT 0,
             current_direction direction NOT NULL DEFAULT 'north',
-            time_before_attack BIGINT NOT NULL DEFAULT 7
+            time_before_attack BIGINT NOT NULL DEFAULT 12
         );''')
         print("user_state table created 6/6")
 
